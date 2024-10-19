@@ -33,7 +33,6 @@ def tutor_response(request):
                 "learn data science"
             ]
             if any(re.search(keyword, user_input, re.IGNORECASE) for keyword in roadmap_keywords):
-                # Fetch the roadmap prompt
                 roadmap_prompt = get_prompt("roadmap")
                 full_prompt = [
                     {"role": "system", "content": get_prompt("system")},
@@ -41,30 +40,21 @@ def tutor_response(request):
                     {"role": "user", "content": user_input}
                 ]
             else:
-                # 1. Get the system prompt (fixed for every conversation)
                 system_prompt = get_prompt("system")
-
-                # 2. Dynamically choose a topic prompt based on the user's input or a predefined topic
-                # For this example, assume the topic is Python basics, specifically "define a function"
                 topic_key = "python_basics"
                 topic_prompt = get_prompt("topic", topic_key, concept="define a function")
-
-                # 3. Combine the system and topic prompts with the user's input to form the full conversation
                 full_prompt = [
                     {"role": "system", "content": system_prompt},
                     {"role": "assistant", "content": topic_prompt},
                     {"role": "user", "content": user_input}
                 ]
 
-            # Call the OpenAI API with the constructed prompt
             response = openai.ChatCompletion.create(
-                model="gpt-4o-mini",  # Ensure the correct model name is used
+                model="gpt-4o-mini",
                 messages=full_prompt
             )
 
             tutor_reply = response['choices'][0]['message']['content']
-
-            # Save chatbot message
             ChatMessage.objects.create(session=session, role='assistant', content=tutor_reply)
 
             return JsonResponse({'response': tutor_reply, 'session_id': session.session_id})
@@ -72,3 +62,6 @@ def tutor_response(request):
             return JsonResponse({'error': str(e)}, status=500)
     else:
         return JsonResponse({'error': 'Invalid request method.'}, status=400)
+
+def chat_view(request):
+    return render(request, 'tutor/index.html')
