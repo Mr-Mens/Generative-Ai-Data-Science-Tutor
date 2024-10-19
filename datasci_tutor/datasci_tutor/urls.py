@@ -21,4 +21,6 @@ from django.urls import path, include
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('tutor/', include('tutor.urls')),
+    path('admin/', admin.site.urls),
+    path('', include('tutor.urls')),  # This will map the root URL to the 'tutor' app
 ]
