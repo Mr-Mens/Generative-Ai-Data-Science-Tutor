@@ -7,18 +7,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Science Tutor</title>
     <link rel="stylesheet" href="{% static 'tutor/styles.css' %}">
+    <!-- TinyMCE CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
+
 </head>
 <body>
     <div class="container">
-        <h1>Data Science Tutor</h1>
-        <div class="chat-box" id="chat-box">
-            <!-- Chat messages will appear here -->
+        <!-- Sidebar for the image -->
+        <div class="sidebar">
+            <!-- Place the image here -->
+            <img src="{% static 'tutor/tutor_image.png' %}" alt="Tutor Image">
+            <!-- <p class="sidebar-text">I can help you to become a Data Scientist, ask me any question or click on a specific topic to start</p> -->
         </div>
-        <div class="input-container">
-            <input type="text" id="user-input" placeholder="Type your message here..." autocomplete="off">
-            <button onclick="sendMessage()">Send</button>
+
+        <!-- Main chat area -->
+        <div class="chat-area">
+            <h1>Data Science Tutor</h1>
+            <div class="chat-box" id="chat-box">
+                <!-- Chat messages will appear here -->
+            </div>
+            <div class="input-container">
+                <input type="text" id="user-input" placeholder="Type your message here..." autocomplete="off">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+
+        <!-- Footer for topics -->
+        <div class="footer">
+            <button class="topic-button" onclick="selectTopic('Python Basics')">Python Basics</button>
+            <button class="topic-button" onclick="selectTopic('Statistics')">Statistics</button>
+            <button class="topic-button" onclick="selectTopic('Machine Learning')">Machine Learning</button>
+            <button class="topic-button" onclick="selectTopic('Data Visualization')">Data Visualization</button>
         </div>
     </div>
-    <script src="{% static 'tutor/script.js' %}"></script>
+    <script src="{% static 'tutor/js/script.js' %}"></script>
 </body>
 </html>

@@ -9,7 +9,7 @@ from .models import ChatSession, ChatMessage
 import uuid
 import re
 
-openai.api_key = settings.OPENAI_API_KEY
+openai.api_key = "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"
 
 @csrf_exempt
 def tutor_response(request):

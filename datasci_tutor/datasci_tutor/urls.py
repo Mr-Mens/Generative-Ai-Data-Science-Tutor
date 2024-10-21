@@ -17,10 +17,12 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from tutor import views  # Import the views module from the tutor app
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('tutor/', include('tutor.urls')),
     path('admin/', admin.site.urls),
+    path('', views.chat_view, name='chat_view'),
     path('', include('tutor.urls')),  # This will map the root URL to the 'tutor' app
 ]
