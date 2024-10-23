@@ -8,12 +8,20 @@ from django.conf import settings
 from .models import ChatSession, ChatMessage
 import uuid
 import re
+from dotenv import load_dotenv
+import os
 
-openai.api_key = "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"
+# Create a function to configure the OpenAI API key
+def configure():
+    # Load the .env file
+    load_dotenv()
+    # Get the OpenAI API key from the environment
+    openai.api_key = os.getenv("OPENAI_API_KEY")
 
 @csrf_exempt
 def tutor_response(request):
     if request.method == 'POST':
+        configure()
         try:
             data = json.loads(request.body)
             user_input = data.get('message', '')
