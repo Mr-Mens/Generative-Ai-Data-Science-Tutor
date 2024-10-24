@@ -1,6 +1,6 @@
 # Data Science Tutor
 
-Data Science Tutor is an interactive web application designed to provide personalized data science guidance through a chatbot interface. It serves as a virtual tutor that helps users learn data science concepts, offers coding examples, and provides a step-by-step roadmap for becoming a data scientist.
+Data Science Tutor is an interactive Generative AI web application designed to provide personalized data science guidance through a chatbot interface. It serves as a virtual tutor that helps users learn data science concepts, offers coding examples, and provides a step-by-step roadmap for becoming a data scientist.
 
 ## Features
 
